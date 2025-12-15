@@ -1,0 +1,38 @@
+gripper_hardware_interface:
+  ros__parameters:
+    # EtherCAT configuration
+    ethernet_interface: "enp3s0"
+    gripper_slave_id: 1
+    gripper_function_code: 6  # Write single register
+    
+    # Gripper control parameters
+    gripper_speed: 80.0
+    gripper_force: 50.0
+    position_tolerance: 0.01
+    
+    # Position limits (normalized 0-1)
+    min_position: -1.0
+    max_position: 0.0
+    
+    # EtherCAT communication parameters
+    update_rate: 100  # Hz
+    read_timeout: 0.1  # seconds
+    write_timeout: 0.1  # seconds
+    
+    # Modbus register addresses
+    position_read_high: 0x0609
+    position_read_low: 0x060A
+    position_write_high: 0x0102
+    position_write_low: 0x0103
+    speed_register: 0x0104
+    force_register: 0x0105
+    trigger_register: 0x0108
+
+    # Hardware interface configuration
+    joints:
+      - name: "Left_1_Joint"
+        type: "position"
+        command_interfaces: ["position"]
+        state_interfaces: ["position"]
+        min_position: -1.0
+        max_position: 0.0

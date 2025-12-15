@@ -1,0 +1,38 @@
+# EtherCAT优化配置
+# 减少夹爪控制对机械臂操作的影响
+
+ethercat_optimization:
+  # SDO超时设置 (微秒)
+  sdo_timeout_safe: 5000      # 原值 20000, 减少到 5ms
+  sdo_timeout_rxm: 50000      # 原值 700000, 减少到 50ms
+  
+  # 夹爪操作优化
+  gripper:
+    # 异步处理队列大小
+    command_queue_size: 10
+    
+    # 操作间延时 (微秒)
+    inter_operation_delay: 2000   # 减少到 2ms
+    read_operation_delay: 5000    # 减少到 5ms
+    trigger_delay: 3000           # 减少到 3ms
+    
+    # 错误处理
+    max_retry_count: 3
+    error_log_threshold: 3        # 错误日志显示阈值
+    
+    # 超时设置
+    async_operation_timeout: 100  # 异步操作超时 100ms
+    
+  # IO操作优化  
+  io_operations:
+    # 减少不必要的SDO读取频率
+    read_frequency_limit: 20      # 限制读取频率 20Hz
+    
+    # 错误寄存器处理
+    ignore_error_registers:
+      - 0x7001                    # 忽略此寄存器的读取错误
+      
+  # 日志级别
+  logging:
+    suppress_frequent_errors: true
+    debug_log_interval: 100       # 调试日志间隔（次数）

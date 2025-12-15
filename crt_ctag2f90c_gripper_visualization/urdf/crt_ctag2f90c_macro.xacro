@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="crt_ctag2f90c_gripper" params="parent_link">
+    <xacro:include
+      filename="$(find crt_ctag2f90c_gripper_visualization)/urdf/crt_ctag2f90c.urdf" />
+
+    <joint name="gripper_mount_joint" type="fixed">
+      <origin xyz="0 0 0.0271" rpy="0 0 0" />
+      <parent link="${parent_link}" />
+      <child link="base_link" />
+    </joint>
+
+    <!-- 在 base_link 正后方添加方块 -->
+    <link name="back_box">
+      <visual>
+        <origin xyz="0 -0.08 0.0" rpy="0 0 0" /> <!-- 向后移 10cm -->
+        <geometry>
+          <box size="0.01 0.06 0.1" /> <!-- 长宽高 10cm -->
+        </geometry>
+        <material name="blue">
+          <color rgba="0 0 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.08 0.0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.01 0.06 0.1" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.1" /> <!-- 简单设置质量 -->
+        <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+          iyy="0.0001" iyz="0.0"
+          izz="0.0001" />
+      </inertial>
+    </link>
+
+    <joint name="back_box_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="back_box" />
+    </joint>
+
+    <!-- 在 Left_up_Link 上添加一个 1cm 方块 -->
+    <link name="Left_up_block">
+      <visual>
+        <origin xyz="0 0 0.01" rpy="0 0 0" /> <!-- 偏移1cm -->
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+        <material name="blue">
+          <color rgba="0 0 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.01" rpy="0 0 0" />
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="Left_up_block_joint" type="fixed">
+      <parent link="Left_up_Link" />
+      <child link="Left_up_block" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <!-- Right_up_Link 同理 -->
+    <link name="Right_up_block">
+      <visual>
+        <origin xyz="0 0 0.01" rpy="0 0 0" />
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+        <material name="red">
+          <color rgba="1 0 0 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.01" rpy="0 0 0" />
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="Right_up_block_joint" type="fixed">
+      <parent link="Right_up_Link" />
+      <child link="Right_up_block" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+
+  </xacro:macro>
+</robot>

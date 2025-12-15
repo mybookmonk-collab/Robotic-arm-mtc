@@ -1,0 +1,12 @@
+<profiles>
+  <participant profile_name="participant_profile" is_default_profile="true">
+    <rtps>
+      <builtin>
+        <readerHistoryMemoryPolicy>DYNAMIC</readerHistoryMemoryPolicy>
+        <writerHistoryMemoryPolicy>DYNAMIC</writerHistoryMemoryPolicy>
+      </builtin>
+      <sendSocketBufferSize>1048576</sendSocketBufferSize>
+      <listenSocketBufferSize>1048576</listenSocketBufferSize>
+    </rtps>
+  </participant>
+</profiles>

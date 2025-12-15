@@ -1,0 +1,9 @@
+<library path="gripper_hardware_interface">
+  <class name="gripper_hardware_interface/GripperHardwareInterface"
+         type="gripper_hardware_interface::GripperHardwareInterface"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      ros2_control hardware interface.
+    </description>
+  </class>
+</library>

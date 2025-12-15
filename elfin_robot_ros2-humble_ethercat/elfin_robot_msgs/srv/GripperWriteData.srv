@@ -1,0 +1,8 @@
+int32 slave_id
+int32 function_code
+int32 addrss
+int32 value
+int16 speed
+int16 force
+---
+bool success
